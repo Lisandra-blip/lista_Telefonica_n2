@@ -1,16 +1,28 @@
 package br.univali.contacts;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+@Entity
 public class Contact implements Serializable {
+    @PrimaryKey
+    private int id;
+
+    @ColumnInfo
     private String name;
+
+    @ColumnInfo
     private String phone;
 
     public Contact() {
 
     }
 
-    public Contact(String name, String phone) {
+    public Contact(int id, String name, String phone) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
     }
