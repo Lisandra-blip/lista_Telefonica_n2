@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +40,7 @@ public class ContactDetailsFragment extends Fragment {
             binding.buttonDelete.setVisibility(View.GONE);
         }
         binding.buttonSave.setOnClickListener(v -> {
+            if (!validate()) return;
             if (contact == null) {
                 contact = new Contact();
                 contact.setName(binding.name.getEditText().getText().toString());
@@ -56,5 +58,18 @@ public class ContactDetailsFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_from_contact_details_to_contact_list);
         });
         return binding.getRoot();
+    }
+
+    private boolean validate() {
+        String error = null;
+        if (binding.name.getEditText().getText().toString().isEmpty()) {
+            error = "Nome está vazio!";
+        } else if (binding.phone.getEditText().getText().toString().isEmpty()) {
+            error = "Telefone está vazio!";
+        }
+        if (error != null) {
+            Toast.makeText(requireActivity(), error, Toast.LENGTH_SHORT).show();
+        }
+        return error == null;
     }
 }
