@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.univali.contacts.databinding.FragmentContactListBinding
 
 class ContactListFragment : Fragment() {
-    private val viewModel: ContactViewModel by viewModels()
+    private val viewModel: ContactListViewModel by viewModels()
     private lateinit var binding: FragmentContactListBinding
 
     override fun onCreateView(

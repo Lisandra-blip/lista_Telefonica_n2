@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ContactViewModel : ViewModel() {
+class ContactListViewModel : ViewModel() {
     private val _contacts = MutableLiveData<List<Contact>>(listOf())
     val contacts: LiveData<List<Contact>> = _contacts;
 
@@ -19,13 +19,6 @@ class ContactViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 _contacts.value = contacts
             }
-        }
-    }
-
-    fun add(context: Context, contact: Contact) {
-        viewModelScope.launch(Dispatchers.IO) {
-            ContactDatabase.getInstance(context).contactDao().add(contact)
-            findAll(context)
         }
     }
 }

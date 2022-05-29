@@ -7,10 +7,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import br.univali.contacts.databinding.FragmentContactDetailsBinding;
 
 public class ContactDetailsFragment extends Fragment {
     private FragmentContactDetailsBinding binding;
+    private ContactDetailViewModel viewModel;
+
+    @Override
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(ContactDetailViewModel.class);
+    }
 
     @Nullable
     @Override
