@@ -12,4 +12,10 @@ class ContactDetailViewModel : ViewModel() {
             ContactDatabase.getInstance(context).contactDao().add(contact)
         }
     }
+
+    fun delete(context: Context, contact: Contact){
+        viewModelScope.launch(Dispatchers.IO) {
+            ContactDatabase.getInstance(context).contactDao().delete(contact)
+        }
+    }
 }

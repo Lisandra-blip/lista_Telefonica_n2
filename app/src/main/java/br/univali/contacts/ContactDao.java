@@ -1,6 +1,7 @@
 package br.univali.contacts;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -13,4 +14,7 @@ public interface ContactDao {
 
     @Insert
     void add(Contact contact);
+
+    @Delete
+    void delete(Contact contact);
 }
