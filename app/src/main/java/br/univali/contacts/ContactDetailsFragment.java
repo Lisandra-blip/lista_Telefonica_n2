@@ -33,12 +33,15 @@ public class ContactDetailsFragment extends Fragment {
             assert (binding.phone.getEditText() != null);
             binding.name.getEditText().setText(contact.getName());
             binding.phone.getEditText().setText(contact.getPhone());
+        } else {
+            binding.buttonDelete.setVisibility(View.GONE);
         }
         binding.buttonSave.setOnClickListener(v -> {
             Contact newContact = new Contact();
             newContact.setName(binding.name.getEditText().getText().toString());
             newContact.setPhone(binding.phone.getEditText().getText().toString());
             viewModel.add(requireContext(), newContact);
+            Navigation.findNavController(v).navigate(R.id.action_from_contact_details_to_contact_list);
         });
         binding.buttonDelete.setOnClickListener(v -> {
             viewModel.delete(requireContext(), contact);
