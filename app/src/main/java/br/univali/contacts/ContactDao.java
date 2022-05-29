@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface ContactDao {
-    @Query("SELECT * FROM Contact")
+    @Query("SELECT * FROM Contact ORDER BY name")
     List<Contact> findAll();
 
     @Insert
