@@ -16,7 +16,16 @@ class ContactViewModel : ViewModel() {
     fun findAll(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             val contacts = ContactDatabase.getInstance(context).contactDao().findAll()
-            withContext(Dispatchers.Main) { _contacts.value = contacts }
+            withContext(Dispatchers.Main) {
+                _contacts.value = contacts
+            }
+        }
+    }
+
+    fun add(context: Context, contact: Contact) {
+        viewModelScope.launch(Dispatchers.IO) {
+            ContactDatabase.getInstance(context).contactDao().add(contact)
+            findAll(context)
         }
     }
 }
