@@ -21,7 +21,6 @@ class ContactListFragment : Fragment() {
     ): View {
         binding = FragmentContactListBinding.inflate(inflater, container, false)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.findAll(requireContext())
         viewModel.contacts.observe(viewLifecycleOwner) {
             binding.recyclerView.adapter = ContactListAdapter(it)
         }
