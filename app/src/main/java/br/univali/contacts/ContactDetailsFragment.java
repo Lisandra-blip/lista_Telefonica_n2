@@ -31,6 +31,12 @@ public class ContactDetailsFragment extends Fragment {
             binding.name.getEditText().setText(contact.getName());
             binding.phone.getEditText().setText(contact.getPhone());
         }
+        binding.buttonSave.setOnClickListener(v -> {
+            Contact newContact = new Contact();
+            newContact.setName(binding.name.getEditText().getText().toString());
+            newContact.setPhone(binding.phone.getEditText().getText().toString());
+            viewModel.add(requireContext(), newContact);
+        });
         return binding.getRoot();
     }
 }
