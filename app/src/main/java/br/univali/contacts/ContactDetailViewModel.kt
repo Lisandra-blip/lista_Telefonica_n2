@@ -13,9 +13,15 @@ class ContactDetailViewModel : ViewModel() {
         }
     }
 
-    fun delete(context: Context, contact: Contact){
+    fun delete(context: Context, contact: Contact) {
         viewModelScope.launch(Dispatchers.IO) {
             ContactDatabase.getInstance(context).contactDao().delete(contact)
+        }
+    }
+
+    fun update(context: Context, contact: Contact) {
+        viewModelScope.launch(Dispatchers.IO) {
+            ContactDatabase.getInstance(context).contactDao().update(contact)
         }
     }
 }
