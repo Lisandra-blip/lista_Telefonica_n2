@@ -11,15 +11,6 @@
     android:paddingEnd="16dp"
     android:paddingBottom="12dp">
 
-    <ImageView
-        android:id="@+id/avatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/contact_avatar_background"
-        android:padding="10dp"
-        android:tint="@android:color/white"
-        app:srcCompat="@drawable/ic_person" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

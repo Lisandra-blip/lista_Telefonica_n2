@@ -17,6 +17,7 @@ public class Contact implements Serializable {
     @ColumnInfo
     private String phone;
 
+
     public Contact() {
 
     }

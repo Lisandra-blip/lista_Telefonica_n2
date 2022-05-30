@@ -1,11 +1,11 @@
 <resources>
 
     <style name="Theme.Contacts" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/deep_orange_500</item>
-        <item name="colorPrimaryVariant">@color/deep_orange_700</item>
+        <item name="colorPrimary">@color/azul</item>
+        <item name="colorPrimaryVariant">@color/azul</item>
         <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorSecondary">@color/deep_orange_500</item>
-        <item name="colorSecondaryVariant">@color/deep_orange_500</item>
+        <item name="colorSecondary">@color/azul</item>
+        <item name="colorSecondaryVariant">@color/azul</item>
         <item name="colorOnSecondary">@android:color/white</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
