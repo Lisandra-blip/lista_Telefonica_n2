@@ -5,6 +5,7 @@
     <string name="phone">Telefone</string>
     <string name="save">SALVAR</string>
     <string name="name">Nome</string>
+    <string name="delete">Deletar</string>
     <string-array name="contact_type">
         <item>celular</item>
         <item>residencial</item>
