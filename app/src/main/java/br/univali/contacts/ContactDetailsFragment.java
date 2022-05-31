@@ -1,18 +1,16 @@
 package br.univali.contacts;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import br.univali.contacts.databinding.FragmentContactDetailsBinding;
 
 public class ContactDetailsFragment extends Fragment {
@@ -30,6 +28,13 @@ public class ContactDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentContactDetailsBinding.inflate(inflater, container, false);
+        binding.contactType.setAdapter(
+                ArrayAdapter.createFromResource(
+                        getContext(),
+                        R.array.contact_type,
+                        android.R.layout.simple_spinner_dropdown_item
+                )
+        );
         contact = (Contact) requireArguments().getSerializable("contact");
         if (contact != null) {
             assert (binding.name.getEditText() != null);

@@ -5,4 +5,9 @@
     <string name="phone">Telefone</string>
     <string name="save">SALVAR</string>
     <string name="name">Nome</string>
+    <string-array name="contact_type">
+        <item>celular</item>
+        <item>residencial</item>
+        <item>comercial</item>
+    </string-array>
 </resources>
