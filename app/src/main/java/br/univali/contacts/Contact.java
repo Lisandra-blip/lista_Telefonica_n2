@@ -18,13 +18,13 @@ public class Contact implements Serializable {
     private String phone;
 
     @ColumnInfo
-    private String type;
+    private int type;
 
     public Contact() {
 
     }
 
-    public Contact(int id, String name, String phone, String type) {
+    public Contact(int id, String name, String phone, int type) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -55,11 +55,11 @@ public class Contact implements Serializable {
         this.phone = phone;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 

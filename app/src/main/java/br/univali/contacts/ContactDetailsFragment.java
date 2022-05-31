@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ public class ContactDetailsFragment extends Fragment {
     private FragmentContactDetailsBinding binding;
     private ContactDetailViewModel viewModel;
     private Contact contact;
+    private boolean isEditing;
+    private int type = 0;
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
@@ -35,26 +38,36 @@ public class ContactDetailsFragment extends Fragment {
                         android.R.layout.simple_spinner_dropdown_item
                 )
         );
+        binding.contactType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                type = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
         contact = (Contact) requireArguments().getSerializable("contact");
-        if (contact != null) {
-            assert (binding.name.getEditText() != null);
-            assert (binding.phone.getEditText() != null);
-            binding.name.getEditText().setText(contact.getName());
-            binding.phone.getEditText().setText(contact.getPhone());
-        } else {
+        isEditing = contact != null;
+        if (contact == null) {
+            contact = new Contact();
+        }
+        binding.name.getEditText().setText(contact.getName());
+        binding.phone.getEditText().setText(contact.getPhone());
+        binding.contactType.setSelection(contact.getType());
+        if (!isEditing) {
             binding.buttonDelete.setVisibility(View.GONE);
         }
         binding.buttonSave.setOnClickListener(v -> {
             if (!validate()) return;
-            if (contact == null) {
-                contact = new Contact();
-                contact.setName(binding.name.getEditText().getText().toString());
-                contact.setPhone(binding.phone.getEditText().getText().toString());
-                viewModel.add(requireContext(), contact);
-            } else {
-                contact.setName(binding.name.getEditText().getText().toString());
-                contact.setPhone(binding.phone.getEditText().getText().toString());
+            contact.setName(binding.name.getEditText().getText().toString());
+            contact.setPhone(binding.phone.getEditText().getText().toString());
+            contact.setType(type);
+            if (isEditing) {
                 viewModel.update(requireContext(), contact);
+            } else {
+                viewModel.add(requireContext(), contact);
             }
             Navigation.findNavController(v).navigate(R.id.action_from_contact_details_to_contact_list);
         });
